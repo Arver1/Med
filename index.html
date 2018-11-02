@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      position:fixed
+    }
+    .wrapper{
+      height: 100%;
+    }
+    .slide_1,
+    .slide_2,
+    .slide_3 {
+      width: 100%;
+      height: 100%;
+      visibility: hidden;
+      position: absolute;
+    }
+    .slide_1 {
+      background-color: wheat;
+    }
+    .slide_2 {
+      background-color: tomato;
+    }
+    .slide_3 {
+      background-color: gold;
+    }
+    .active {
+      visibility: visible;
+      position: relative;
+    }
+    .a1 {
+      top: 0;
+      left: 0;
+      position: fixed;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="a1">
+      <button>Test</button>
+    </div>
+    <div class="slide slide_1 active"></div>
+    <div class="slide slide_2"></div>
+    <div class="slide slide_3"></div>
+  </div>
+<script>
+  const wrapper = document.querySelector('.wrapper');
+  const slides = document.querySelectorAll('.slide');
+  const btn = document.querySelector('button');
+
+  const fps = 50;
+  const totalTime = 2000;
+  let timerId = null;
+
+  function changeYSlide(e){
+    if(timerId) {
+      clearTimeout(timerId);
+    }
+    timerId = setTimeout(()=>{
+      if(!this) return; // context it's array of slides
+      const arrSlides = [...this];
+      const maxL = arrSlides.length - 1;
+      let activeNum = 0;
+      let current = 0;
+      let i = 0;
+      while(i <= maxL){
+        if(!!~[...arrSlides[i].classList].indexOf('active')){
+          activeNum = i;
+          break;
+        }
+        i++;
+      }
+      if (e.deltaY < 0 || e.touches && e.touches[0].clientY > temp) {
+        console.log('up');
+        current = activeNum - 1 <= 0 ? 0 : activeNum - 1;
+      }
+      if (e.deltaY > 0 || e.touches && e.touches[0].clientY < temp)  {
+        console.log('down');
+        current = activeNum + 1 > maxL ? maxL : activeNum + 1;
+      }
+      arrSlides[activeNum].classList.toggle('active');
+      arrSlides[current].classList.toggle('active');
+    }, 100);
+  }
+  let temp = null;
+  function defineDirection(e){
+    console.log('start');
+    temp = e.touches[0].clientY;
+  }
+  window.addEventListener('touchstart', defineDirection);
+  window.addEventListener('touchmove', changeYSlide.bind(slides));
+  window.addEventListener('wheel', changeYSlide.bind(slides));
+</script>
+</body>
+</html>
