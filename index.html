@@ -22,7 +22,7 @@
       width: 100%;
       height: 100vh;
       position: absolute;
-      visibility: hidden;
+      /*visibility: hidden;*/
     }
     .slide_1 {
       background-color: wheat;
@@ -35,17 +35,17 @@
     }
     .leave_down {
       transform: translateY(-100%);
-      transition: all 500ms;
+      transition: all 300ms;
       position: relative;
     }
     .enter_down {
       transform: translateY(-100%);
-      transition: all 500ms;
+      transition: all 300ms;
       position: relative;
     }
     .leave_up {
       transform: translateY(100%);
-      transition: all 500ms;
+      transition: all 300ms;
       position: relative;
     }
     .active {
@@ -99,13 +99,13 @@
       }
       if (e.deltaY < 0 || e.touches && e.touches[0].clientY > temp) {
         if(activeNum - 1 < 0) return;
-        current = activeNum - 1 <= 0 ? 0 : activeNum - 1;
+        current = activeNum - 1 === 0 ? 0 : activeNum - 1;
         arrSlides[activeNum].classList.toggle('active' );
         arrSlides[activeNum].classList.toggle(`leave_up`);
         setTimeout(()=>{
           arrSlides[activeNum].classList.toggle(`leave_up`);
           arrSlides[current].classList.toggle(`active`);
-        }, 500);
+        }, 300);
       }
       if (e.deltaY > 0 || e.touches && e.touches[0].clientY < temp)  {
         if(activeNum + 1 > maxL) return;
@@ -117,9 +117,9 @@
         setTimeout(()=>{
           arrSlides[activeNum].classList.toggle(`leave_${direction}`);
           arrSlides[current].classList.toggle(`enter_${direction}`);
-        }, 500);
+        }, 300);
       }
-    }, 500);
+    }, 100);
   }
   let temp = null;
   function defineDirection(e){
