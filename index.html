@@ -22,6 +22,7 @@
       width: 100%;
       height: 100vh;
       position: absolute;
+      visibility: hidden;
     }
     .slide_1 {
       background-color: wheat;
@@ -34,24 +35,23 @@
     }
     .leave_down {
       transform: translateY(-100%);
-      transition: all 800ms;
+      transition: all 500ms;
       position: relative;
     }
     .enter_down {
       transform: translateY(-100%);
-      transition: all 800ms;
+      transition: all 500ms;
+      position: relative;
     }
     .leave_up {
       transform: translateY(100%);
-      transition: all 800ms;
+      transition: all 500ms;
       position: relative;
     }
-    /*.enter_up {*/
-      /*position: relative;*/
-    /*}*/
     .active {
+      visibility: visible;
       position: relative;
-      transition: all 800ms;
+      /*transition: all 1000ms;*/
     }
     .a1 {
       top: 0;
@@ -89,6 +89,7 @@
       let activeNum = 0;
       let current = 0;
       let i = 0;
+      let direction = 'down';
       while(i <= maxL){
         if(!!~[...arrSlides[i].classList].indexOf('active')){
           activeNum = i;
@@ -98,29 +99,27 @@
       }
       if (e.deltaY < 0 || e.touches && e.touches[0].clientY > temp) {
         if(activeNum - 1 < 0) return;
-        current = activeNum - 1 === 0 ? 0 : activeNum - 1;
+        current = activeNum - 1 <= 0 ? 0 : activeNum - 1;
         arrSlides[activeNum].classList.toggle('active' );
         arrSlides[activeNum].classList.toggle(`leave_up`);
         setTimeout(()=>{
           arrSlides[activeNum].classList.toggle(`leave_up`);
           arrSlides[current].classList.toggle(`active`);
-        }, 800);
+        }, 500);
       }
       if (e.deltaY > 0 || e.touches && e.touches[0].clientY < temp)  {
         if(activeNum + 1 > maxL) return;
-        current = activeNum + 1 === maxL ? maxL : activeNum + 1;
+        current = activeNum + 1 > maxL ? maxL : activeNum + 1;
         arrSlides[activeNum].classList.toggle('active' );
-        arrSlides[activeNum].classList.toggle(`leave_down`);
-        arrSlides[current].classList.toggle(`enter_down`);
+        arrSlides[current].classList.toggle(`enter_${direction}`);
+        arrSlides[activeNum].classList.toggle(`leave_${direction}`);
+        arrSlides[current].classList.toggle('active');
         setTimeout(()=>{
-          arrSlides[current].classList.toggle('active');
-          arrSlides[current].classList.toggle(`enter_down`);
-          arrSlides[activeNum].classList.toggle(`leave_down`);
-          // arrSlides[current].classList.toggle(`enter_down`);
-          // arrSlides[current].classList.toggle('active');
-        }, 800);
+          arrSlides[activeNum].classList.toggle(`leave_${direction}`);
+          arrSlides[current].classList.toggle(`enter_${direction}`);
+        }, 500);
       }
-    }, 800);
+    }, 500);
   }
   let temp = null;
   function defineDirection(e){
