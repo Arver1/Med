@@ -1,11 +1,15 @@
 export function vSlider(slides, fieldRange, delay = 300){
   // vSlider: slides required numeration first parameter of function,double underscore,number
   // like that : slide__1, slide__2
-  console.log(this);
-  const panel = document.querySelector('.sliderV__controls');
-  const controls =  panel.querySelectorAll('.sliderV__control');
   const nameActiveClass = 'sliderV__slide--active';
   const nameActiveControl = 'sliderV__control--active';
+  const nameLeaveDownClass = 'sliderV__slide--leave_down';
+  const nameEnterDownClass = 'sliderV__slide--enter_down';
+  const nameEnterUpClass = 'sliderV__slide--enter_up';
+  const nameLeaveUpClass = 'sliderV__slide--leave_up';
+
+  const panel = document.querySelector('.sliderV__controls');
+  const controls =  panel.querySelectorAll('.sliderV__control');
   let currentSlide = 0;
   slides.forEach((slide, index) => {
     if(slide.classList.contains(nameActiveClass)) {
@@ -59,12 +63,12 @@ export function vSlider(slides, fieldRange, delay = 300){
         if(activeNum - 1 < 0) return;
         current = activeNum - 1 === 0 ? 0 : activeNum - 1;
         arrSlides[activeNum].classList.toggle(nameActiveClass);
-        arrSlides[activeNum].classList.toggle('leave_up');
-        arrSlides[current].classList.toggle('enter_up');
+        arrSlides[activeNum].classList.toggle(nameLeaveUpClass);
+        arrSlides[current].classList.toggle(nameEnterUpClass);
         setTimeout(()=>{
-          arrSlides[activeNum].classList.toggle('leave_up');
+          arrSlides[activeNum].classList.toggle(nameLeaveUpClass);
           arrSlides[current].classList.toggle(nameActiveClass);
-          arrSlides[current].classList.toggle('enter_up');
+          arrSlides[current].classList.toggle(nameEnterUpClass);
           controls[activeNum].classList.toggle(nameActiveControl);
           controls[current].classList.toggle(nameActiveControl);
         }, delay);
@@ -73,12 +77,12 @@ export function vSlider(slides, fieldRange, delay = 300){
         if(activeNum + 1 > maxL) return;
         current = activeNum + 1 > maxL ? maxL : activeNum + 1;
         arrSlides[activeNum].classList.toggle(nameActiveClass);
-        arrSlides[current].classList.toggle('enter_down');
-        arrSlides[activeNum].classList.toggle('leave_down');
+        arrSlides[current].classList.toggle(nameEnterDownClass);
+        arrSlides[activeNum].classList.toggle(nameLeaveDownClass);
         arrSlides[current].classList.toggle(nameActiveClass);
         setTimeout(()=>{
-          arrSlides[activeNum].classList.toggle('leave_down');
-          arrSlides[current].classList.toggle('enter_down');
+          arrSlides[activeNum].classList.toggle(nameLeaveDownClass);
+          arrSlides[current].classList.toggle(nameEnterDownClass);
           controls[activeNum].classList.toggle(nameActiveControl);
           controls[current].classList.toggle(nameActiveControl);
         }, delay);

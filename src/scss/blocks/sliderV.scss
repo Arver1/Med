@@ -46,4 +46,22 @@
   &__control--active {
     background-color: #f78b1f;
   }
+  &__slide--leave_down {
+    transform: translateY(-100%);
+    transition: all $delay;
+    position: relative;
+  }
+  &__slide--enter_down {
+    transform: translateY(-100%);
+    transition: all $delay;
+    position: relative;
+  }
+  &__slide--enter_up {
+    visibility: visible;
+  }
+  &__slide--leave_up {
+    transform: translateY(100%);
+    transition: all $delay;
+    position: relative;
+  }
 }
