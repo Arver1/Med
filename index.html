@@ -4,52 +4,39 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="src/css/style.css">
 </head>
 <body>
   <div class="wrapper">
-    <div class="container">
-      <div class="slide slide_1">
+    <section class="sliderV">
+      <div class="sliderV__slide sliderV__slide--1">
         <h2>Всегда ли цели терапии СД2 на поверхности?</h2>
       </div>
-      <div class="slide slide_2">
-        <h2>Основа терапии </h2>
+      <div class="sliderV__slide sliderV__slide--2">
+        <h2>Основа терапии - патогенез СД2</h2>
       </div>
-      <div class="slide slide_3 active">
-        <input type="range" class="control_hz"
-               style="position: absolute; top: 50%; left: 50%; z-index: 100"
-               min="0"
+      <div class="sliderV__slide sliderV__slide--3 sliderV__slide--active">
+        <input type="range" class="sliderH__range" min="0"
                max="0"
-               step="1"
-        >
+               step="1">
         <div class="slideH_slider">
           <div class="slideH slideH_1">
           </div>
-          <div class="slideH slideH_2" style="background: green">
+          <div class="slideH slideH_2">
           </div>
-          <div class="slideH slideH_3" style="background: skyblue">
+          <div class="slideH slideH_3">
           </div>
         </div>
       </div>
-      <div class="controls">
-        <div class="control control_1">
+      <div class="sliderV__controls">
+        <div class="sliderV__control sliderV__control--1">
         </div>
-        <div class="control control_2">
+        <div class="sliderV__control sliderV__control--2">
         </div>
-        <div class="control control_3">
+        <div class="sliderV__control sliderV__control--3">
         </div>
       </div>
-    </div>
+    </section>
   </div>
-  <script src="src/js/verticalSlider.js"></script>
-  <script src="src/js/landSlider.js"></script>
-<script>
-  const landContainer = document.querySelector('.slideH_slider');
-  const landSlides = landContainer.querySelectorAll('.slideH');
-  const fieldRange = document.querySelector('.control_hz');
-
-  vSlider(document.querySelectorAll('.slide'), 300);
-  landSlider(landContainer, landSlides, fieldRange, 300);
-</script>
+  <script src="/build/bundle.js"></script>
 </body>
 </html>

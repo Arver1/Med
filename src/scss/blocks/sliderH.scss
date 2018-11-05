@@ -1,0 +1,60 @@
+.sliderH {
+  &__range {
+    position: absolute;
+    bottom: 75px;
+    left: 180px;
+    width: 640px;
+    height: 11px;
+    z-index: 100;
+    -webkit-appearance: none;
+  }
+  &__range:focus {
+    outline: none;
+  }
+  &__range::-webkit-slider-thumb {
+    margin-top: -14px;
+    -webkit-appearance: none;
+    height: 56px;
+    width: 44px;
+    background: url('/src/img/thumb@1x.png');
+    cursor: pointer;
+  }
+  &__range::-moz-range-thumb {
+    height: 56px;
+    width: 44px;
+    background: url('/src/img/thumb.png');
+    cursor: pointer;
+  }
+  &__range::-ms-thumb {
+    height: 56px;
+    width: 44px;
+    background: url('/src/img/thumb.png');
+    cursor: pointer;
+  }
+  // полоса диапозона
+  &__range::-webkit-slider-runnable-track {
+    height: 11px;
+    width: 640px;
+    cursor: pointer;
+    background: #8898a6;
+  }
+  &__range::-moz-range-track {
+    height: 11px;
+    width: 640px;
+    cursor: pointer;
+    background: #8898a6;
+  }
+  &__range::-ms-track {
+    height: 11px;
+    width: 640px;
+    cursor: pointer;
+    background: #8898a6;
+  }
+  &__range::-ms-fill-lower {
+    background: #8898a6;
+  }
+  &__range::-ms-fill-upper {
+    background: #8898a6
+  }
+}
+

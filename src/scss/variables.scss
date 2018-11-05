@@ -1,0 +1,7 @@
+$delay: 300ms;
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}

@@ -1,0 +1,69 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+p,
+fieldset,
+legend {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style-type: none;
+}
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position:fixed
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  @include flex-center;
+  cursor: pointer;
+}
+.slideH_slider {
+  height: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+}
+.slideH {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+}
+.slideH_1 {
+  background: #0c1444 url('/src/img/slideV3H1@1x.jpg') 50% 50%;
+}
+.slideH_2 {
+  background: #0c1444 url('/src/img/slideV3H2@1x.jpg') 50% 50%;
+}
+.slideH_3 {
+  background: #0c1444 url('/src/img/slideV3H3@1x.jpg') 50% 50%;
+}
+.leave_down {
+  transform: translateY(-100%);
+  transition: all 300ms;
+  position: relative;
+}
+.enter_down {
+  transform: translateY(-100%);
+  transition: all 300ms;
+  position: relative;
+}
+.enter_up {
+  visibility: visible;
+}
+.leave_up {
+  transform: translateY(100%);
+  transition: all 300ms;
+  position: relative;
+}
