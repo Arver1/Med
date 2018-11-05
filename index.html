@@ -13,18 +13,52 @@
       padding: 0;
       position:fixed
     }
-    .wrapper{
-      width: 100%;
+    .wrapper {
+      height: 100%;
       margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      cursor: pointer;
+    }
+    .container {
+      width: 1024px;
+      height: 768px;
+      position: relative;
+      overflow: hidden;
+    }
+    .controls {
+      width: 14px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 27px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: transparent;
+    }
+    .control {
+      width: 14px;
+      height: 14px;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+    .control:not(:last-child){
+      margin-bottom: 7px;
+    }
+    .control_active {
+      background-color: #f78b1f;
     }
     .slide_1,
     .slide_2,
     .slide_3 {
-      width: 100%;
-      height: 100vh;
+      width: 1024px;
+      height: 768px;
       position: absolute;
       overflow: hidden;
-      /*visibility: hidden;*/
+      visibility: hidden;
     }
     .slideH_slider {
       height: 100%;
@@ -38,14 +72,17 @@
     }
 
     .slide_1 {
-      /*background-color: wheat;*/
+      background: #163AB2 url('img/slideV1@1x.jpg') 50% 50%;
     }
     .slide_2 {
-      background: #163AB2 url('img/slideV2.jpg') 50% 50%;
-      background-size: cover;
+      background: #163AB2 url('img/slideV2@1x.jpg') 50% 50%;
+      /*background-size: cover;*/
     }
     .slide_3 {
-      background-color: gold;
+      /*background-color: gold;*/
+    }
+    .slideH_1 {
+      background: #0c1444 url('img/slideV3H1@1x.jpg') 50% 50%;
     }
     .leave_down {
       transform: translateY(-100%);
@@ -56,6 +93,9 @@
       transform: translateY(-100%);
       transition: all 300ms;
       position: relative;
+    }
+    .enter_up {
+      visibility: visible;
     }
     .leave_up {
       transform: translateY(100%);
@@ -71,25 +111,37 @@
 </head>
 <body>
   <div class="wrapper">
-    <div class="slide slide_1 active">
-      <input type="range" class="control_hz"
-             style="position: absolute; top: 50%; left: 50%; z-index: 100"
-             min="0"
-             max="0"
-             step="1"
-             value="0"
-      >
-      <div class="slideH_slider">
-        <div class="slideH slideH_1" style="background: indigo">
-        </div>
-        <div class="slideH slideH_2" style="background: green">
-        </div>
-        <div class="slideH slideH_3" style="background: skyblue">
+    <div class="container">
+      <div class="slide slide_1 active"></div>
+      <div class="slide slide_2"></div>
+      <div class="slide slide_3">
+        <input type="range" class="control_hz"
+               style="position: absolute; top: 50%; left: 50%; z-index: 100"
+               min="0"
+               max="0"
+               step="1"
+               value="0"
+        >
+        <div class="slideH_slider">
+          <div class="slideH slideH_1">
+          </div>
+          <div class="slideH slideH_2" style="background: green">
+          </div>
+          <div class="slideH slideH_3" style="background: skyblue">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="slide slide_2"></div>
-    <div class="slide slide_3">
+      <div class="controls">
+        <div class="control control_1 control_active">
+
+        </div>
+        <div class="control control_2">
+
+        </div>
+        <div class="control control_3">
+
+        </div>
+      </div>
     </div>
   </div>
 <script>
@@ -100,6 +152,36 @@
   const fps = 50;
   const totalTime = 2000;
   let timerId = null;
+
+  /* controls
+  * */
+
+  const panel = document.querySelector('.controls');
+  const controls =  panel.querySelectorAll('.control');
+
+  panel.addEventListener('click', function(e){
+    if(e.target === this) return;
+    const names = e.target.className;
+    if(~names.indexOf('control_active')){
+      return;
+    }
+    const oldValue = panel.querySelector('.control_active').className.replace(/\D/g, '') - 1;
+    const value = names.replace(/\D/g, '') - 1;
+    const delta = value - oldValue;
+    const count = delta < 0 ? -delta : delta;
+    const event = new WheelEvent('wheel', {
+      deltaY: value > oldValue ? 100 : -100
+    });
+    for(let i = 0; i <= count; i++){
+      if(i === 0) window.dispatchEvent(event);
+      setTimeout(()=>{
+        window.dispatchEvent(event);
+      }, 300);
+    }
+  });
+  /*
+  * */
+
 
   /* horizontal slider
   * */
@@ -127,7 +209,7 @@
       }
 
       changeXSlide(timePassed, k, direction);
-    },20)
+    },20);
     oldVal = e.target.value;
     // slideH.style.transform = `translateX(-${e.target.value * 100}%)`;
   });
@@ -170,9 +252,13 @@
         current = activeNum - 1 === 0 ? 0 : activeNum - 1;
         arrSlides[activeNum].classList.toggle('active' );
         arrSlides[activeNum].classList.toggle('leave_up');
+        arrSlides[current].classList.toggle('enter_up');
         setTimeout(()=>{
           arrSlides[activeNum].classList.toggle('leave_up');
           arrSlides[current].classList.toggle('active');
+          arrSlides[current].classList.toggle('enter_up');
+          controls[activeNum].classList.toggle('control_active');
+          controls[current].classList.toggle('control_active');
         }, 300);
       }
       if (e.deltaY > 0 || e.touches && e.touches[0].clientY < temp)  {
@@ -185,6 +271,8 @@
         setTimeout(()=>{
           arrSlides[activeNum].classList.toggle('leave_down');
           arrSlides[current].classList.toggle('enter_down');
+          controls[activeNum].classList.toggle('control_active');
+          controls[current].classList.toggle('control_active');
         }, 300);
       }
     }, 100);
