@@ -1,7 +1,15 @@
 $delay: 300ms;
+$GothamPro: 'Arial', 'GothamPro', sans-serif;
 @mixin flex-center {
   display: flex;
   justify-content: center;
   align-content: center;
   align-items: center;
+}
+@mixin font($size: 20px, $height: normal, $weight: 400, $color: #0d319c) {
+  font-size: $size;
+  line-height: $height;
+  font-weight: $weight;
+  color: $color;
+  font-family: 'Arial', 'Lato', sans-serif;
 }

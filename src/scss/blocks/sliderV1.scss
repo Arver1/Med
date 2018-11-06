@@ -1,0 +1,43 @@
+.sliderV1 {
+  &__item {
+    @include font();
+    position: relative;
+  }
+  &__point {
+    position: absolute;
+  }
+  &__point--1 {
+    top: 0;
+    right: 158px;
+  }
+  &__point--2 {
+    top: 44px;
+    left: 46px;
+  }
+  &__point--3 {
+    top: 44px;
+    right: 46px;
+  }
+  &__point--4 {
+    top: 40px;
+    left: 112px;
+  }
+  &__item--1 {
+    margin-right: 250px;
+    text-align: right;
+    margin-bottom: 103px;
+  }
+  &__item--2 {
+    margin-left: 228px;
+    text-align: left;
+    margin-bottom: 65px;
+  }
+  &__item--3 {
+    margin-right: 140px;
+    text-align: right;
+  }
+  &__item--4 {
+    margin-left: 365px;
+    text-align: left;
+  }
+}

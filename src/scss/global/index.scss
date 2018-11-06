@@ -29,23 +29,3 @@ body, html {
   @include flex-center;
   cursor: pointer;
 }
-.slideH_slider {
-  height: 100%;
-  display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: nowrap;
-}
-.slideH {
-  flex-shrink: 0;
-  width: 100%;
-  height: 100%;
-}
-.slideH_1 {
-  background: #0c1444 url('/src/img/slideV3H1@1x.jpg') 50% 50%;
-}
-.slideH_2 {
-  background: #0c1444 url('/src/img/slideV3H2@1x.jpg') 50% 50%;
-}
-.slideH_3 {
-  background: #0c1444 url('/src/img/slideV3H3@1x.jpg') 50% 50%;
-}
