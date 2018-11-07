@@ -1,0 +1,46 @@
+.range {
+  width: 640px;
+  height: 12px;
+  background: #435063;
+  position: absolute;
+  left: 195px;
+  bottom: 75px;
+  border: 1px solid #273143;
+  z-index: 50;
+  &__fill_scale {
+    height: 12px;
+    width: 622px;
+    background: #d1eaff;
+    position: absolute;
+    cursor: pointer;
+    z-index: 50;
+  }
+  &__thumb {
+    width: 44px;
+    height: 56px;
+    background: url('/src/img/thumb.png') 50% 50%;
+    background-size: cover;
+    position: absolute;
+    top: -20px;
+    left: 620.5px;
+    cursor: pointer;
+    z-index: 100;
+  }
+  &__items {
+    z-index: 50;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    top: 42px;
+    position: absolute;
+    font-size: 30px;
+  }
+  &__item {
+    @include font();
+    color: #fff;
+  }
+}
