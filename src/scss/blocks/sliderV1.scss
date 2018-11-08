@@ -5,21 +5,23 @@
   }
   &__point {
     position: absolute;
+    transform-origin: 50% 50%;
+    transform: rotate(285deg);
   }
   &__point--1 {
-    top: 0;
+    top: -16px;
     right: 158px;
   }
   &__point--2 {
-    top: 44px;
+    top: 24px;
     left: 46px;
   }
   &__point--3 {
-    top: 44px;
+    top: 30px;
     right: 46px;
   }
   &__point--4 {
-    top: 40px;
+    top: 26px;
     left: 112px;
   }
   &__item--1 {
@@ -30,7 +32,7 @@
   &__item--2 {
     margin-left: 228px;
     text-align: left;
-    margin-bottom: 65px;
+    margin-bottom: 60px;
   }
   &__item--3 {
     margin-right: 140px;
