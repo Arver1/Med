@@ -9,22 +9,59 @@
 <body>
 <svg style="display: none">
     <symbol id="point">
-      <circle r="27" cx="28" cy="28" fill="rgba(247, 143, 45, 0.22)" stroke="tomato" stroke-width="2"/>
-      <circle r="21" cx="28" cy="28" fill="rgba(247, 143, 45, 0.22)" stroke="tomato" stroke-width="2"/>
-      <circle id="orange-circle" r="9" cx="28" cy="28" fill="tomato" fill-opacity=".62"/>
-      <linearGradient id="linear-gradient">
-        <stop offset="0%" stop-color="#de791b"/>
-        <stop offset="100%" stop-color="#cf1437"/>
-      </linearGradient>
-      <animate
-              xlink:href="#orange-circle"
-              attributeName="r"
-              from="10"
-              to="20"
-              dur="1s"
-              begin="0s"
-              repeatCount="indefinite"
-              fill="freeze" />
+      <circle r="27" cx="28" cy="28" fill="rgba(247, 143, 45, 0.22)" stroke="rgba(247, 143, 45)" stroke-width="2"/>
+      <circle r="3" cx="28" cy="28" fill="rgba(247, 143, 45)" stroke-width="2" stroke="rgba(247, 143, 45, 0.22)">
+        <animate 
+                id="stroke2"
+                attributeName="stroke"
+                from="rgba(247, 143, 45, 0.22)"
+                to="rgba(247, 143, 45, 1)"
+                dur="5s"
+                begin="2s;stroke2.end"
+        />
+        <animate
+                id="fill2"
+                attributeName="fill"
+                from="rgba(247, 143, 45)"
+                to="rgba(247, 143, 45, 0)"
+                dur="5s"
+                begin="2s;fill2.end"
+        />
+        <animate
+                id="rad2"
+                attributeName="r"
+                from="3"
+                to="27"
+                dur="5s"
+                begin="2s;rad2.end"
+        />
+      </circle>
+      <circle r="3" cx="28" cy="28" fill="rgba(247, 143, 45)" stroke-width="2" stroke="rgba(247, 143, 45, 0.22)">
+        <animate
+                id="stroke"
+                attributeName="stroke"
+                from="rgba(247, 143, 45, 0.22)"
+                to="rgba(247, 143, 45, 1)"
+                dur="5s"
+                begin="0s;stroke.end"
+        />
+        <animate
+                id="fill"
+                attributeName="fill"
+                from="rgba(247, 143, 45)"
+                to="rgba(247, 143, 45, 0)"
+                dur="5s"
+                begin="0s;fill.end"
+        />
+        <animate
+                id="rad"
+                attributeName="r"
+                from="3"
+                to="27"
+                dur="5s"
+                begin="0s;rad.end"
+        />
+      </circle>
     </symbol>
 </svg>
   <div class="wrapper">

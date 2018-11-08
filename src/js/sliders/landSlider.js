@@ -11,22 +11,23 @@ export function landSlider(container, slides, delay = 300, thumb) {
   let direction = null;
 
   thumb.addEventListener('mousedown', function(e){
-    oldValue = e.clientX;
+    oldValue = parseFloat(thumb.style.left) ^ 0;
     moveThumb(e);
   });
   thumb.addEventListener('mouseup', function(e){
-    const points = document.querySelectorAll('.range__items');
+    const points = document.querySelectorAll('.range__item');
     const scale = document.querySelector('.range');
     const range = {
       maxX: scale.offsetWidth - thumb.offsetWidth
     };
     const sectionLength = range.maxX / (points.length - 1);
-    if(e.clientX < oldValue) direction = 'right';
-    else direction = 'left';
-    k = parseFloat(thumb.style.left) / sectionLength ^ 0;
     let timer = null;
-    if (timer) return;
     const start = Date.now();
+    if(e.clientX < oldValue) direction = 'left';
+    else direction = 'right';
+    k = parseFloat(thumb.style.left) / sectionLength ^ 0;
+    console.log(k)
+    if (timer) return;
       timer = setInterval(() => {
         const timePassed = Date.now() - start;
         if (timePassed > delay + 20) {
@@ -42,7 +43,7 @@ export function landSlider(container, slides, delay = 300, thumb) {
     if (direction === 'left') {
       slideH.style.transform = `translateX(${(max - k - 1) * 100 + value}%)`;
     } else if (direction === 'right') {
-      slideH.style.transform = `translateX(${(max - k + 1) * 100 - value}%)`;
+      slideH.style.transform = `translateX(${(max - k) * 100 - value}%)`;
     }
   }
 }

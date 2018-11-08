@@ -30,12 +30,13 @@
     z-index: 50;
     margin: 0;
     padding: 0;
-    width: 100%;
+    width: calc(100% + 44px);
     list-style: none;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
     top: 42px;
+    left: -22px;
     position: absolute;
     font-size: 30px;
   }

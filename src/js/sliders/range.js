@@ -8,7 +8,8 @@ export default function (e){
     minX: -thumb.offsetWidth / 2,
     maxX: scale.offsetWidth - thumb.offsetWidth / 2
   };
-  const sectionLength = range.maxX / (points.length - 1);
+  const sectionLength = (range.maxX + thumb.offsetWidth) / (points.length - 1);
+  console.log((range.maxX))
   const startCoords = { x: e.clientX };
   let timerId = null;
   function actionMoveThumb(e){
@@ -16,7 +17,7 @@ export default function (e){
     const shift = { x: e.clientX - startCoords.x};
     startCoords.x = e.clientX;
     let newX = thumb.offsetLeft + shift.x;
-    newX = newX < 0  ? range.minX :
+    newX = newX < -range.minX  ? -range.minX :
       newX > range.maxX ? range.maxX : newX;
     thumb.style.left =  newX + 'px';
     if(newX > 0 ){
@@ -53,9 +54,9 @@ export default function (e){
             return;
           }
           thumb.style.left =  left - timePassed / step + 'px';
-          if(parseFloat(thumb.style.left) < 2){
-            thumb.style.left = '-22px';
-          }
+          // if(parseFloat(thumb.style.left) < 2){
+          //   thumb.style.left = '-22px';
+          // }
           fillScale.style.width = thumb.style.left;
         }, 10)
       }
