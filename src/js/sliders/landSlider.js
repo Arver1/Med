@@ -73,7 +73,7 @@ export function landSlider(thumb, delay = 1500) {
           }
         }, 1000)
       } else {
-        k = Math.round(ui.position.left / sectionLength);
+        k = Math.ceil(ui.position.left / sectionLength);
         change('right', ui.position.left, k);
         if(timerId) clearTimeout(timerId);
         timerId = setTimeout(()=>{

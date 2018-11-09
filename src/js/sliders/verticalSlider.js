@@ -20,21 +20,11 @@ export function vSlider(slides, thumb, delay = 300){
   let temp = null;
   let timerId = null;
 
+
   window.addEventListener('touchstart', defineDirection);
   window.addEventListener('touchmove', changeYSlide.bind(slides));
   window.addEventListener('wheel', changeYSlide.bind(slides));
   panel.addEventListener('click', togglePanel);
-
-  $('.range__thumb').on('dragstop', () => {
-    window.addEventListener('touchstart', defineDirection);
-    window.addEventListener('touchmove', changeYSlide.bind(slides));
-    window.addEventListener('wheel', changeYSlide.bind(slides));
-  }).on('dragstart', () => {
-    window.removeEventListener('touchstart', defineDirection);
-    window.removeEventListener('touchmove', changeYSlide.bind(slides));
-    window.removeEventListener('wheel', changeYSlide.bind(slides));
-  });
-
 
   function defineDirection(e){
     temp = e.touches[0].clientY;
