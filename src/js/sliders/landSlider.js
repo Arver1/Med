@@ -14,7 +14,7 @@ export function landSlider(thumb, delay = 1500) {
   let startLeft = 0;
   let direction = 'left';
 
-  $('.range__thumb').draggable({
+  $(thumb).draggable({
     start: function(e, ui){
       startLeft = ui.position.left;
     },

@@ -31,6 +31,7 @@ export function vSlider(slides, thumb, delay = 300){
   }
 
   function changeYSlide(e){
+    if(e.target === thumb) return;
     if(timerId) {
       clearTimeout(timerId);
     }
