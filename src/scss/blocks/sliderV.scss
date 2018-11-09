@@ -130,10 +130,10 @@
   }
   &__sun-text::before {
     transform: rotate(135deg);
-    left: 48px;
+    left: 43px;
   }
   &__sun-text::after {
-    right: 48px;
+    right: 43px;
     transform: rotate(-135deg);
   }
 }

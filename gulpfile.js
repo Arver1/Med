@@ -45,14 +45,14 @@ gulp.task('serv', () => {
     server: './',
     index: 'index.html'
   });
-  browserSync.watch('src/scss/*.scss').on('change', browserSync.reload);
+  browserSync.watch('src/css/*.css').on('change', browserSync.reload);
   browserSync.watch('*.html').on('change', browserSync.reload);
   browserSync.watch('src/img/*.*').on('all', browserSync.reload);
   browserSync.watch('src/js/*.*').on('change', gulp.series('webpack', 'reload'));
 });
 
 gulp.task('watch', () => {
-  gulp.watch('scss/**/*.scss', gulp.series('sass'));
+  gulp.watch('src/scss/**/*.scss', gulp.series('sass'))
 });
 
 gulp.task('reload', function(){
