@@ -1,4 +1,4 @@
-export function vSlider(slides, fieldRange, delay = 300){
+export function vSlider(slides, thumb, delay = 300){
   // vSlider: slides required numeration first parameter of function,double underscore,number
   // like that : slide__1, slide__2
   const nameActiveClass = 'sliderV__slide--active';
@@ -25,17 +25,16 @@ export function vSlider(slides, fieldRange, delay = 300){
   window.addEventListener('wheel', changeYSlide.bind(slides));
   panel.addEventListener('click', togglePanel);
 
-  // fieldRange.addEventListener('input', ()=>{
-  //   window.removeEventListener('touchstart', defineDirection);
-  //   window.removeEventListener('touchmove', changeYSlide.bind(slides));
-  //   window.removeEventListener('wheel', changeYSlide.bind(slides));
-  // });
-  //
-  // fieldRange.addEventListener('change', ()=>{
-  //   window.addEventListener('touchstart', defineDirection);
-  //   window.addEventListener('touchmove', changeYSlide.bind(slides));
-  //   window.addEventListener('wheel', changeYSlide.bind(slides));
-  // });
+  $('.range__thumb').on('dragstop', () => {
+    window.addEventListener('touchstart', defineDirection);
+    window.addEventListener('touchmove', changeYSlide.bind(slides));
+    window.addEventListener('wheel', changeYSlide.bind(slides));
+  }).on('dragstart', () => {
+    window.removeEventListener('touchstart', defineDirection);
+    window.removeEventListener('touchmove', changeYSlide.bind(slides));
+    window.removeEventListener('wheel', changeYSlide.bind(slides));
+  });
+
 
   function defineDirection(e){
     temp = e.touches[0].clientY;
