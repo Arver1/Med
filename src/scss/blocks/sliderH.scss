@@ -9,26 +9,26 @@
     height: 100%;
   }
   &__slide--1 {
-    background: #0c1444 url('/src/img/slideV3H1@1x.jpg') 50% 50% no-repeat;
+    background: #0c1444 url('../img/slideV3H1@1x.jpg') 50% 50% no-repeat;
     @media (min-resolution: 144dpi),
     (min-resolution: 1.5dppx) {
-      background: #163AB2 url('/src/img/slideV3H1@2x.jpg') 50% 50% no-repeat;
+      background: #163AB2 url('../img/slideV3H1@2x.jpg') 50% 50% no-repeat;
       background-size: 1024px 768px;
     }
   }
   &__slide--2 {
-    background: #0c1444 url('/src/img/slideV3H2@1x.jpg') 50% 50% no-repeat;
+    background: #0c1444 url('../img/slideV3H2@1x.jpg') 50% 50% no-repeat;
     @media (min-resolution: 144dpi),
     (min-resolution: 1.5dppx) {
-      background: #163AB2 url('/src/img/slideV3H2@2x.jpg') 50% 50% no-repeat;
+      background: #163AB2 url('../img/slideV3H2@2x.jpg') 50% 50% no-repeat;
       background-size: 1024px 768px;
     }
   }
   &__slide--3 {
-    background: #0c1444 url('/src/img/slideV3H3@1x.jpg') 50% 50% no-repeat;
+    background: #0c1444 url('../img/slideV3H3@1x.jpg') 50% 50% no-repeat;
     @media (min-resolution: 144dpi),
     (min-resolution: 1.5dppx) {
-      background: #163AB2 url('/src/img/slideV3H3@2x.jpg') 50% 50% no-repeat;
+      background: #163AB2 url('../img/slideV3H3@2x.jpg') 50% 50% no-repeat;
       background-size: 1024px 768px;
     }
   }
@@ -49,19 +49,19 @@
     -webkit-appearance: none;
     height: 56px;
     width: 44px;
-    background: url('/src/img/thumb@1x.png');
+    background: url('../img/thumb@1x.png');
     cursor: pointer;
   }
   &__range::-moz-range-thumb {
     height: 56px;
     width: 44px;
-    background: url('/src/img/thumb.png');
+    background: url('../img/thumb.png');
     cursor: pointer;
   }
   &__range::-ms-thumb {
     height: 56px;
     width: 44px;
-    background: url('/src/img/thumb.png');
+    background: url('../img/thumb.png');
     cursor: pointer;
   }
   // полоса диапозона

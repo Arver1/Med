@@ -1,6 +1,5 @@
 import { landSlider } from './sliders/landSlider';
 import { vSlider } from './sliders/verticalSlider';
-import '../scss/style.scss';
 
 window.addEventListener('load', () => {
   const thumb = document.querySelector('.range__thumb');

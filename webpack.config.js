@@ -1,108 +1,35 @@
-const path = require('path');
+const PATH = require('path');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
-  source: path.join(__dirname, 'src/js'),
-  build: path.join(__dirname, 'build'),
+  source: PATH.join(__dirname, 'src/js'),
+  build: PATH.join(__dirname, 'src/js')
 };
 
-
-const conf = {
+const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV.trim() === 'development';
+module.exports = {
+  mode: isDevelopment ? 'development' : 'production',
   context: PATHS.source,
-  entry: './index.js',
-
-  output: {
-    path: PATHS.build,
-    filename: 'bundle.js',
-    publicPath: '/build/'
+  entry: {
+    index: './index.js',
   },
 
+  output: {
+    filename: 'main.js',
+    path: PATHS.build
+  },
+
+  plugins: [
+    new CaseSensitivePathsPlugin()
+  ],
   module: {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        include: PATHS.source,
-        options: {
-          cacheDirectory: true
-        },
-      },
-      {
-        test: /\.(png|jpg|gif|ico|svg)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(png|jpg|gif|ico|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: './img',
-        }
+        exclude: /node_modules/,
+        use: 'babel-loader'
       }
     ]
   },
-
-  plugins: [
-    new CaseSensitivePathsPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "css/style.css",
-    }),
-    new OptimizeCSSAssetsPlugin({}),
-    new HtmlWebpackPlugin({
-      template: '../../index.html'
-    })
-  ]
-};
-
-module.exports = (env, argv) => {
-  if(argv.mode === 'development') {
-    conf.devtool = 'source-map';
-    conf.module.rules.push({
-      test: /\.(sa|sc|c)ss$/,
-      use: [
-        'style-loader',
-        {
-          loader: "css-loader", options: {
-            sourceMap: true
-          }
-        },
-        'postcss-loader',
-        {
-          loader: "sass-loader", options: {
-            sourceMap: true
-          }
-        }
-      ],
-    });
-    return conf;
-  }
-  conf.devtool = false;
-  conf.output.publicPath = './';
-  conf.module.rules.push({
-    test: /\.(sa|sc|c)ss$/,
-    use: [
-      {
-        loader:MiniCssExtractPlugin.loader,
-        options: {
-          // you can specify a publicPath here
-          // by default it use publicPath in webpackOptions.output
-          publicPath: '../'
-        }
-      },
-      'css-loader',
-      'postcss-loader',
-      'sass-loader'
-    ],
-  });
-  return conf;
+  devtool: isDevelopment ? 'eval' : 'source-map'
 };
